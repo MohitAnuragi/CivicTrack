@@ -24,7 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
+fun LoginScreen( onNavigateToSignUp: () -> Unit, // Callback to navigate to sign up
+                 authViewModel: AuthViewModel) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -63,7 +64,7 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
         }
         Spacer(modifier = Modifier.height(8.dp))
 
-        TextButton(onClick = { navController.navigate("signup") }) {
+        TextButton(onClick = onNavigateToSignUp) { // Use the callback here
             Text("Don't have an account? Sign Up")
         }
     }
